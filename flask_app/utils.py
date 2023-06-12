@@ -71,9 +71,12 @@ def solve_problem(input_file: FileStorage):
     
     solution = str( get_mzn_model_solution(MZN_MODEL_FILE, DZN_DATA_FILE) )
 
-    solution_dict = convert_solution_string_to_dict(solution, data[0])
+    if solution=='None':
+        return None
+    else:        
+        solution_dict = convert_solution_string_to_dict(solution, data[0])
+        return solution_dict
 
-    return solution_dict
 
 
 
@@ -111,8 +114,11 @@ def solve_problem_from_data_list(data_list: List):
     input_list_data_to_dzn(data_list, DZN_DATA_FILE)
 
     solution = str( get_mzn_model_solution(MZN_MODEL_FILE, DZN_DATA_FILE) )
-    solution_dict = convert_solution_string_to_dict(solution, data_list[0])
-    
-    return solution_dict
+
+    if solution=='None':
+        return None
+    else:        
+        solution_dict = convert_solution_string_to_dict(solution, data_list[0])
+        return solution_dict
 
 

@@ -70,6 +70,9 @@ def upload_input_file():
 
 		solution = solve_problem(file)
 
+		if(solution==None):
+			return render_template("unsatisfiable.html")
+
 		num_rows = len(solution['Matriz'])
 		num_cols = len(solution['Matriz'][0])
 
