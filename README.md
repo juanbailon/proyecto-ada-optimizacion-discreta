@@ -2,6 +2,11 @@
 
 create virtual enviroment
 ```sh
+python3 -m venv venv
+```
+
+install modules
+```sh
 pip install -r requirements.txt
 ```
 
