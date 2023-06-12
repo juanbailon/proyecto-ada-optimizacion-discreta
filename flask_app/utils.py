@@ -57,7 +57,7 @@ def get_mzn_model_solution(mzn_file:str, dzn_file: str):
 
     instance = Instance(gecode, model)
 
-    timeout = datetime.timedelta(seconds=30)
+    timeout = datetime.timedelta(minutes=2)
 
     result = instance.solve(timeout=timeout)
 
