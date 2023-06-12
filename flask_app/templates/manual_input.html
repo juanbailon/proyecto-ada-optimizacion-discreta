@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Sender</title>
+    <script>
+        function showMatrix() {
+            var integer1Input = document.getElementById("n_teams");
+            var matrixSection = document.getElementById("matrixSection");
+
+            if (integer1Input.value && !isNaN(integer1Input.value)) {
+                matrixSection.style.display = "block";
+                var size = parseInt(integer1Input.value);
+
+                var table = document.createElement("table");
+                var thead = document.createElement("thead");
+                var tbody = document.createElement("tbody");
+
+                var headerRow = document.createElement("tr");
+                headerRow.appendChild(document.createElement("th"));
+                for (var col = 0; col < size; col++) {
+                    var headerCell = document.createElement("th");
+                    headerCell.textContent = col + 1;
+                    headerRow.appendChild(headerCell);
+                }
+                thead.appendChild(headerRow);
+
+                for (var row = 0; row < size; row++) {
+                    var tableRow = document.createElement("tr");
+                    var rowHeaderCell = document.createElement("th");
+                    rowHeaderCell.textContent = row + 1;
+                    tableRow.appendChild(rowHeaderCell);
+                    for (var col = 0; col < size; col++) {
+                        var cell = document.createElement("td");
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "matrix_" + row + "_" + col ;
+                        input.addEventListener("keydown", handleEnterKey);
+                        cell.appendChild(input);
+                        tableRow.appendChild(cell);
+                    }
+                    tbody.appendChild(tableRow);
+                }
+
+                table.appendChild(thead);
+                table.appendChild(tbody);
+
+                // Remove the existing table if present
+                var existingTable = document.getElementById("matrixTable");
+                if (existingTable) {
+                    matrixSection.removeChild(existingTable);
+                }
+
+                table.id = "matrixTable";
+                matrixSection.appendChild(table);
+            } else {
+                matrixSection.style.display = "none";
+            }
+        }
+
+
+        function validateForm() {
+            var integer1Input = document.getElementById("n_teams");
+            var integer2Input = document.getElementById("Min");
+            var integer3Input = document.getElementById("Max");
+
+            if (!isInteger(integer1Input.value)) {
+                alert("Please enter a valid integer for n.");
+                return false;
+            }
+
+            if (!isInteger(integer2Input.value)) {
+                alert("Please enter a valid integer for Min.");
+                return false;
+            }
+
+            if (!isInteger(integer3Input.value)) {
+                alert("Please enter a valid integer for Max.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function isInteger(value) {
+            return /^-?\d+$/.test(value);
+        }
+
+        function handleEnterKey(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Manual Input</h1>
+    <form method="POST" action="/manual-input" onsubmit="return validateForm()">
+        <label for="n_teams">n:</label>
+        <input type="text" id="n_teams" name="n_teams" oninput="showMatrix()" onkeydown="handleEnterKey(event)"><br><br>
+        <label for="Min">Min:</label>
+        <input type="text" id="Min" name="Min" onkeydown="handleEnterKey(event)"><br><br>
+        <label for="Max">Max:</label>
+        <input type="text" id="Max" name="Max" onkeydown="handleEnterKey(event)"><br><br>
+
+        <div id="matrixSection" style="display: none;">
+            <h2>Matrix de costos de viaje:</h2>
+        </div>
+
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>

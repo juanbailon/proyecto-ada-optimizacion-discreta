@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask App</title>
+</head>
+<body>
+    <h1>Flask App</h1>
+
+    <form method="POST" action="/upload-file" enctype="multipart/form-data">
+        <button type="submit">Upload TXT</button>
+        <input type="file" name="file">
+    </form>
+
+    <form method="GET" action="/manual-input">
+        <button type="submit">Manual Input (GET)</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+</head>
+<body>
+    <h1>Costo:</h1>
+    <label>{{ data["Costo"] }}</label>
+
+    <h1>Matriz:</h1>
+    <table>
+        <thead>
+            <tr>
+                {% for col in range(num_cols) %}
+                <th>Column {{ col + 1 }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data["Matriz"] %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
