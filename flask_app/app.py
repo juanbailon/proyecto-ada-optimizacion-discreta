@@ -78,6 +78,10 @@ def upload_input_file():
 
 		return render_template("display_results.html", data=solution, num_rows=num_rows, num_cols=num_cols)
 
+@app.route('/static/css/<path:filename>')
+def static_css(filename):
+    return app.send_static_file(f'css/{filename}')
+
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0',debug=True)

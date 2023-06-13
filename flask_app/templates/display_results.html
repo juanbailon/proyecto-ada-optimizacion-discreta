@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Results</title>
-</head>
-<body>
-    <h1>Costo:</h1>
-    <label>{{ data["Costo"] }}</label>
+    <link rel="stylesheet" type="text/css" href="/static/css/result.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Costo: {{ data["Costo"] }}</h1>
+    </header>
 
-    <h1>Matriz:</h1>
-    <table>
-        <thead>
-            <tr>
-                {% for col in range(num_cols) %}
-                <th>Column {{ col + 1 }}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in data["Matriz"] %}
-            <tr>
-                {% for value in row %}
-                <td>{{ value }}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
+    <h1>Calendario:</h1>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          {% for col in range(num_cols) %}
+          <th>Equipo {{ col + 1 }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data["Matriz"] %}
+        <tr>
+          {% for value in row %}
+          <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
-</body>
+  </body>
 </html>
