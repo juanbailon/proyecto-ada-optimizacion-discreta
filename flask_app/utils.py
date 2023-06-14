@@ -152,14 +152,3 @@ def read_input_data_from_local_txt(file_path: str):
     return output
 
 
-
-if __name__ == "__main__":
-    import sys
-
-    data = read_input_data_from_local_txt(sys.argv[1])
-
-    temp = str(sys.argv[2])
-
-    temp2 = temp+"_"+DZN_DATA_FILE
-
-    input_list_data_to_dzn(data, temp2)
