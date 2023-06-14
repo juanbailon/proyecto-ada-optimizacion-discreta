@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Flask App</title>
-</head>
-<body>
-    <h1>Flask App</h1>
+  <head>
+    <title>Calendario deportivo</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="titulo-cal">Crea tu calendario deportivo</h1>
 
-    <form method="POST" action="/upload-file" enctype="multipart/form-data">
-        <button type="submit">Upload TXT</button>
-        <input type="file" name="file">
-    </form>
+      <div class="card">
+        <h3>Upload Files</h3>
+        <div class="drop_box">
+          <header>
+            <h4>Select File here</h4>
+          </header>
+          <p>Files Supported: .txt</p>
+          <form
+            class="subir-form"
+            method="POST"
+            action="/upload-file"
+            enctype="multipart/form-data"
+          >
+            <input class="btn" type="file" name="file" />
+            <button class="btn" type="submit">Upload file</button>
+          </form>
+        </div>
+      </div>
 
-    <form method="GET" action="/manual-input">
-        <button type="submit">Manual Input (GET)</button>
-    </form>
-
-</body>
+      <div class="crear-man">
+        <h4>Crear manualmente</h4>
+        <form method="GET" action="/manual-input">
+          <button class="btn" type="submit">Manual Input</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
