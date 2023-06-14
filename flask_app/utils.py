@@ -57,7 +57,7 @@ def get_mzn_model_solution(mzn_file:str, dzn_file: str):
 
     instance = Instance(gecode, model)
 
-    timeout = datetime.timedelta(minutes=2)
+    timeout = datetime.timedelta(minutes=5)
 
     result = instance.solve(timeout=timeout)
 
@@ -122,3 +122,44 @@ def solve_problem_from_data_list(data_list: List):
         return solution_dict
 
 
+
+def read_input_data_from_local_txt(file_path: str):
+
+    lines = []
+    with open(file_path) as f:
+        lines = f.readlines()
+
+    # file_data = file_path.read().decode('utf-8')
+    # file_data = file_data.strip().split('\n')
+
+    output = []
+    matrix = []
+    for id, line in enumerate(lines):
+        
+        if(id<3):
+            num = line.strip()
+            output.append(int(num))
+        else:
+            arr = line.strip().split()
+            temp = []
+            for num in arr:
+                temp.append(int(num))
+            
+            matrix.append(temp)
+
+    output.append(matrix)
+
+    return output
+
+
+
+if __name__ == "__main__":
+    import sys
+
+    data = read_input_data_from_local_txt(sys.argv[1])
+
+    temp = str(sys.argv[2])
+
+    temp2 = temp+"_"+DZN_DATA_FILE
+
+    input_list_data_to_dzn(data, temp2)
